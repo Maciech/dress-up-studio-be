@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DressModel extends DefaultDatabaseFields {
+public class DressModel {
 
     private String name;
     private double price;
