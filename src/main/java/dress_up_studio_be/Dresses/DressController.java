@@ -1,7 +1,6 @@
-package dress_up_studio_be.controller;
+package dress_up_studio_be.Dresses;
 
-import dress_up_studio_be.model.Dress;
-import dress_up_studio_be.service.DressService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,17 +14,17 @@ public class DressController {
     private DressService dressService;
 
     @GetMapping
-    public List<Dress> getAllDresses() {
+    public List<DressModel> getAllDresses() {
         return dressService.getAllDresses();
     }
 
     @PostMapping
-    public Dress createDress(@RequestBody Dress dress) {
+    public DressModel createDress(@RequestBody DressModel dress) {
         return dressService.saveDress(dress);
     }
 
     @GetMapping("/{name}")
-    public Dress getDressByName(@PathVariable String name) {
+    public DressModel getDressByName(@PathVariable String name) {
         return dressService.getDressByName(name);
     }
 
