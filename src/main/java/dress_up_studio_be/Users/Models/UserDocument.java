@@ -18,4 +18,5 @@ public class UserDocument {
 
     private String username;
     private String password;
+    private Role role;
 }

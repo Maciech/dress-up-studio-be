@@ -34,9 +34,11 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserRequest request) {
+    public ResponseEntity<Map<String, String>> register(@RequestBody UserRequest request) {
         userService.saveUserDocument(request);
-        return ResponseEntity.ok("User registered successfully");
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User registered successfully");
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping(value = "/users/panel")

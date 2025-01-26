@@ -1,6 +1,7 @@
 package dress_up_studio_be.Users.Services;
 
 import dress_up_studio_be.JWT.JwtService;
+import dress_up_studio_be.Users.Models.Role;
 import dress_up_studio_be.Users.Models.UserDocument;
 import dress_up_studio_be.Users.Models.UserRequest;
 import dress_up_studio_be.Users.UserRepository;
@@ -26,19 +27,20 @@ public class UserService {
 
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    public void saveUserDocument(UserRequest userRequest) {
-        UserDocument userDocument = modelMapper.map(userRequest, UserDocument.class);
+    public void saveUserDocument(UserRequest registerRequest) {
+        UserDocument userDocument = modelMapper.map(registerRequest, UserDocument.class);
         userDocument.setPassword(encoder.encode(userDocument.getPassword()));
+        userDocument.setRole(Role.USER);
         userRepository.save(userDocument);
     }
 
     public String verifyUser(UserRequest loginRequest) {
-        Authentication authenticate = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                loginRequest.getUsername(),
+                loginRequest.getPassword()));
+        System.out.println(authenticate.getAuthorities());
+
+
         if (authenticate.isAuthenticated()) {
             return jwtService.generateToken(loginRequest.getUsername());
         }
