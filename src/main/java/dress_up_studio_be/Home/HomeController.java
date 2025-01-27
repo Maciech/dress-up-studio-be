@@ -1,4 +1,4 @@
-package dress_up_studio_be;
+package dress_up_studio_be.Home;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
