@@ -4,7 +4,7 @@ import dress_up_studio_be.JWT.JwtService;
 import dress_up_studio_be.Users.Models.Role;
 import dress_up_studio_be.Users.Models.UserDocument;
 import dress_up_studio_be.Users.Models.UserRequest;
-import dress_up_studio_be.Users.UserRepository;
+import dress_up_studio_be.Users.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

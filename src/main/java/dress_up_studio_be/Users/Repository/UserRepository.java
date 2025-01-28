@@ -1,4 +1,4 @@
-package dress_up_studio_be.Users;
+package dress_up_studio_be.Users.Repository;
 
 import dress_up_studio_be.Users.Models.UserDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;

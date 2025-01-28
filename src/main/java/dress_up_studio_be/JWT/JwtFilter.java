@@ -1,4 +1,4 @@
-package dress_up_studio_be.Configuration;
+package dress_up_studio_be.JWT;
 
 import dress_up_studio_be.JWT.JwtService;
 import dress_up_studio_be.Users.Services.CustomUserDetailsService;

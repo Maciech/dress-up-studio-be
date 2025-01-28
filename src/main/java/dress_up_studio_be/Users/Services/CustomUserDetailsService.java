@@ -2,7 +2,7 @@ package dress_up_studio_be.Users.Services;
 
 import dress_up_studio_be.Users.Models.UserDocument;
 import dress_up_studio_be.Users.Models.UserPrincipal;
-import dress_up_studio_be.Users.UserRepository;
+import dress_up_studio_be.Users.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
