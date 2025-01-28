@@ -1,6 +1,7 @@
-package dress_up_studio_be.Dresses;
+package dress_up_studio_be.Dresses.Controller;
 
-import org.modelmapper.ModelMapper;
+import dress_up_studio_be.Dresses.Service.DressService;
+import dress_up_studio_be.Dresses.Models.DressModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

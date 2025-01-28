@@ -1,5 +1,6 @@
 package dress_up_studio_be.Configuration;
 
+import dress_up_studio_be.JWT.JwtFilter;
 import dress_up_studio_be.Users.Services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

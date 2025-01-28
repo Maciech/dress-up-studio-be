@@ -1,4 +1,4 @@
-package dress_up_studio_be.Users;
+package dress_up_studio_be.Users.Controller;
 
 import dress_up_studio_be.Users.Models.UserRequest;
 import dress_up_studio_be.Users.Services.UserService;

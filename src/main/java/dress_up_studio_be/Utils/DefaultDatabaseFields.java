@@ -1,4 +1,4 @@
-package dress_up_studio_be.Dresses;
+package dress_up_studio_be.Utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
