@@ -1,6 +1,5 @@
 package dress_up_studio_be.JWT;
 
-import dress_up_studio_be.JWT.JwtService;
 import dress_up_studio_be.Users.Services.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -29,7 +28,7 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-        String authHeader = request.getHeader("authorization");
+        String authHeader = request.getHeader("Authorization");
         String token = null;
         String username = null;
 
