@@ -7,9 +7,10 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.NoSuchAlgorithmException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,19 +20,12 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final String secretKey;
     private static final long EXPIRATION_TIME_IN_MILLIS = 6 * 60 * 60 * 1000;
+    private static final String SECRET_KEY_PATH = "src/main/resources/secret.key"; // Path to secret.key file
+    private final String secretKey;
 
     public JwtService() {
-        try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
-            SecretKey sk = keyGenerator.generateKey();
-            secretKey = Base64.getEncoder().encodeToString(sk.getEncoded());
-
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-
+        this.secretKey = loadSecretKeyFromFile();
     }
 
     public String generateToken(String username) {
@@ -49,13 +43,22 @@ public class JwtService {
 
     }
 
+    public String extractUserName(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    private String loadSecretKeyFromFile() {
+        try {
+            byte[] keyBytes = Files.readAllBytes(Paths.get(SECRET_KEY_PATH));
+            return Base64.getEncoder().encodeToString(keyBytes);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load secret key from file", e);
+        }
+    }
+
     private SecretKey getKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
-    }
-
-    public String extractUserName(String token) {
-        return extractClaim(token, Claims::getSubject);
     }
 
     private <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
