@@ -36,13 +36,13 @@ public class UserService {
 
     public String verifyUser(UserRequest loginRequest) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                loginRequest.getUsername(),
+                loginRequest.getEmail(),
                 loginRequest.getPassword()));
         System.out.println(authenticate.getAuthorities());
 
 
         if (authenticate.isAuthenticated()) {
-            return jwtService.generateToken(loginRequest.getUsername());
+            return jwtService.generateToken(loginRequest.getEmail());
         }
         return "User not found";
     }
