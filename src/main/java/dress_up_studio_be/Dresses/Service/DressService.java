@@ -63,12 +63,48 @@ public class DressService {
         return modelMapper.map(dressRepository.save(dress), DressModel.class);
     }
 
+    public List<String> saveImagesInUploads(List<MultipartFile> files) {
+        return storeUrls(files);
+    }
+
+    public DressModel saveDressAfterImages(DressModel dressModel) {
+        DressMstEntity dress = new DressMstEntity();
+        dress.setProductCode(dressModel.getProductCode());
+        dress.setName(dressModel.getName());
+        dress.setPrice(dressModel.getPrice());
+
+        List<DressAvailability> dressAvailabilities = getDressAvailabilities(dressModel);
+        dress.setDressAvailability(dressAvailabilities);
+        dress.setColor(dressModel.getColor());
+        dress.setImageUrls(dressModel.getImageUrls());
+        setDefaultFields(dress);
+
+        for (DressAvailability availability : dressAvailabilities) {
+            availability.setDressMstEntity(dress);
+        }
+
+        return modelMapper.map(dressRepository.save(dress), DressModel.class);
+    }
+
+    private static List<DressAvailability> getDressAvailabilities(DressModel dressModel) {
+        List<DressAvailability> dressAvailabilities = new ArrayList<>();
+
+        dressModel.getDressAvailability().forEach(model -> {
+            dressAvailabilities.add(DressAvailability.builder()
+                    .dressesAvailable(model.getDressesAvailable())
+                    .size(model.getSize())
+                    .total(model.getTotal())
+                    .build());
+        });
+        return dressAvailabilities;
+    }
+
 
     public DressModel getDressByName(String name) {
         return modelMapper.map(dressRepository.findByName(name), DressModel.class);
     }
 
-    public void deleteDress(String id) {
+    public void deleteDress(Long id) {
         dressRepository.deleteById(id);
     }
 
