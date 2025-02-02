@@ -1,12 +1,10 @@
 package dress_up_studio_be.Dresses.Repository;
 
-import dress_up_studio_be.Dresses.Models.DressDocument;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import dress_up_studio_be.Dresses.Models.DressMstEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface DressRepository extends JpaRepository<DressMstEntity, Long> {
+    DressMstEntity findByName(String name);
 
-public interface DressRepository extends MongoRepository<DressDocument, String> {
-    DressDocument findByName(String name);
-
-    List<DressDocument> findAllByOrderByDateModifiedDesc();
+//    List<DressMstEntity> findAllByOrderByDateModifiedDesc();
 }

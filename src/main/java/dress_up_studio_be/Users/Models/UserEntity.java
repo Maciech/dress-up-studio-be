@@ -1,22 +1,22 @@
 package dress_up_studio_be.Users.Models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(value = "USERS")
-public class UserDocument {
+@Entity(name = "USERS")
+public class UserEntity {
 
     @Id
-    private String id;
+    private Long userId;
 
-    private String username;
+    private String email;
     private String password;
     private Role role;
 }

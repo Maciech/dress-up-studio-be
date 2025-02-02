@@ -1,7 +1,6 @@
 package dress_up_studio_be.Dresses.Models;
 
 import dress_up_studio_be.Dresses.Enums.COLOR;
-import dress_up_studio_be.Dresses.Enums.SIZE;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,9 +14,9 @@ import java.util.List;
 @Builder
 public class DressModel {
 
+    private String productCode;
     private String name;
-    private double price;
-    private List<SIZE> size;
-    private List<COLOR> color;
-    private String imageUrl;
+    private List<DressAvailabilityModel> dressAvailability;
+    private COLOR color;
+    private List<String> imageUrls;
 }

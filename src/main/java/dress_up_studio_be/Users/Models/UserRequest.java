@@ -11,13 +11,12 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserRequest {
-    String username;
+    String email;
     String password;
 
     String firstName;
     String lastName;
     Long phoneNumber;
-    String emailAddress;
     String city;
     String streetAndNumber;
     String cityCode;

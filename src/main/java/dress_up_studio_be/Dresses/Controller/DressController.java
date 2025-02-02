@@ -30,7 +30,7 @@ public class DressController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteDress(@PathVariable String id) {
+    public void deleteDress(@PathVariable Long id) {
         dressService.deleteDress(id);
     }
 }

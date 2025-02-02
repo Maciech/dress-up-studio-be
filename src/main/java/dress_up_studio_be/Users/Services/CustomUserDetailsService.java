@@ -1,6 +1,6 @@
 package dress_up_studio_be.Users.Services;
 
-import dress_up_studio_be.Users.Models.UserDocument;
+import dress_up_studio_be.Users.Models.UserEntity;
 import dress_up_studio_be.Users.Models.UserPrincipal;
 import dress_up_studio_be.Users.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDocument userDocument = userRepository.findByUsername(username);
-        if (userDocument == null) {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserEntity userEntity = userRepository.findByEmail(email);
+        if (userEntity == null) {
             System.out.println("User not found");
             throw new UsernameNotFoundException("User not found");
         }
-        return new UserPrincipal(userDocument);
+        return new UserPrincipal(userEntity);
     }
 }
