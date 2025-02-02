@@ -54,7 +54,6 @@ public class DressService {
         DressMstEntity dress = new DressMstEntity();
         dress.setProductCode(productCode);
         dress.setName(name);
-        dress.setPrice(price);
         dress.setDressAvailability(dressAvailability);
         dress.setColor(color);
         dress.setImageUrls(imageUrls);
@@ -71,7 +70,6 @@ public class DressService {
         DressMstEntity dress = new DressMstEntity();
         dress.setProductCode(dressModel.getProductCode());
         dress.setName(dressModel.getName());
-        dress.setPrice(dressModel.getPrice());
 
         List<DressAvailability> dressAvailabilities = getDressAvailabilities(dressModel);
         dress.setDressAvailability(dressAvailabilities);
@@ -91,9 +89,9 @@ public class DressService {
 
         dressModel.getDressAvailability().forEach(model -> {
             dressAvailabilities.add(DressAvailability.builder()
-                    .dressesAvailable(model.getDressesAvailable())
                     .size(model.getSize())
-                    .total(model.getTotal())
+                    .price(model.getPrice())
+                    .isAvailable(model.getIsAvailable())
                     .build());
         });
         return dressAvailabilities;

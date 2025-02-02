@@ -1,6 +1,7 @@
 package dress_up_studio_be.Dresses.Models;
 
 import dress_up_studio_be.Dresses.Enums.COLOR;
+import dress_up_studio_be.Dresses.Utils.StringListConverter;
 import dress_up_studio_be.Utils.DefaultDatabaseFields;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,14 +24,13 @@ public class DressMstEntity extends DefaultDatabaseFields {
 
     private String name;
 
-    private double price;
-
     @OneToMany(cascade = CascadeType.ALL)
     List<DressAvailability> dressAvailability;
 
     @Enumerated(EnumType.STRING)
     private COLOR color;
 
+    @Lob
     @Convert(converter = StringListConverter.class)
     private List<String> imageUrls;
 

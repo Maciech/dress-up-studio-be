@@ -1,6 +1,7 @@
 package dress_up_studio_be.Dresses.Models;
 
 
+import dress_up_studio_be.Dresses.Enums.COLOR;
 import dress_up_studio_be.Dresses.Enums.SIZE;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,9 +22,9 @@ public class DressAvailability {
 
     SIZE size;
 
-    int dressesAvailable;
+    Boolean isAvailable;
 
-    int total;
+    Double price;
 
     @ManyToOne
     @JoinColumn(name="dressId", nullable=false)

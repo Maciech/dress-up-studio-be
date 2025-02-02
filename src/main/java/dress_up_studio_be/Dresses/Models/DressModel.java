@@ -16,7 +16,6 @@ public class DressModel {
 
     private String productCode;
     private String name;
-    private double price;
     private List<DressAvailabilityModel> dressAvailability;
     private COLOR color;
     private List<String> imageUrls;

@@ -1,4 +1,4 @@
-package dress_up_studio_be.Dresses.Models;
+package dress_up_studio_be.Dresses.Utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

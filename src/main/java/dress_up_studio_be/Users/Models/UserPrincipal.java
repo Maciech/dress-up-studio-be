@@ -9,9 +9,9 @@ import java.util.Collections;
 
 public class UserPrincipal implements UserDetails {
 
-    private final UserDocument userDocument;
-    public UserPrincipal(UserDocument userDocument) {
-        this.userDocument = userDocument;
+    private final UserEntity userEntity;
+    public UserPrincipal(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -20,12 +20,12 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return userDocument.getPassword();
+        return userEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userDocument.getUsername();
+        return userEntity.getEmail();
     }
 
     @Override

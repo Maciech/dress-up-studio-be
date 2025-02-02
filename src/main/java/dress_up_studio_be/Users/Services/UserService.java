@@ -2,7 +2,7 @@ package dress_up_studio_be.Users.Services;
 
 import dress_up_studio_be.JWT.JwtService;
 import dress_up_studio_be.Users.Models.Role;
-import dress_up_studio_be.Users.Models.UserDocument;
+import dress_up_studio_be.Users.Models.UserEntity;
 import dress_up_studio_be.Users.Models.UserRequest;
 import dress_up_studio_be.Users.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -28,21 +28,21 @@ public class UserService {
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public void saveUserDocument(UserRequest registerRequest) {
-        UserDocument userDocument = modelMapper.map(registerRequest, UserDocument.class);
-        userDocument.setPassword(encoder.encode(userDocument.getPassword()));
-        userDocument.setRole(Role.USER);
-        userRepository.save(userDocument);
+        UserEntity userEntity = modelMapper.map(registerRequest, UserEntity.class);
+        userEntity.setPassword(encoder.encode(userEntity.getPassword()));
+        userEntity.setRole(Role.USER);
+        userRepository.save(userEntity);
     }
 
     public String verifyUser(UserRequest loginRequest) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                loginRequest.getUsername(),
+                loginRequest.getEmail(),
                 loginRequest.getPassword()));
         System.out.println(authenticate.getAuthorities());
 
 
         if (authenticate.isAuthenticated()) {
-            return jwtService.generateToken(loginRequest.getUsername());
+            return jwtService.generateToken(loginRequest.getEmail());
         }
         return "User not found";
     }

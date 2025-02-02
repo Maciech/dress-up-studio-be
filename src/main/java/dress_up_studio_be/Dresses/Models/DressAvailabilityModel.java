@@ -10,9 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DressAvailabilityModel {
 
+    long dressAvailabilityId;
+
     SIZE size;
 
-    int dressesAvailable;
+    Boolean isAvailable;
 
-    int total;
+    Double price;
 }
